@@ -1,0 +1,12 @@
+@import "../../app/pallette.scss";
+
+.pageSpinner {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	color: $palette-interactive-default-normal-bg;
+	// Because Bootstrap spinner use transform for animation
+	margin: -50px 0 0 -50px;
+}
