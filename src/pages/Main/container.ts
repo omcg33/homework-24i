@@ -2,10 +2,10 @@ import {connect} from "react-redux";
 
 import {run} from "../../app/actions";
 
-import {Controller, IProps}           from "./controller";
-import {getHasData, getPopularMovies} from "./selectors";
+import {Controller, IProps}                               from "./controller";
+import {getHasData, getPopularMovies, getPopularTvSeries} from "./selectors";
 
-type IStateProps = Pick<IProps, "params" | "hasData" | "popularMovies">;
+type IStateProps = Pick<IProps, "params" | "hasData" | "popularMovies" | "popularTvSeries">;
 type IDispatchProps = Pick<IProps, "run">;
 export type IOwnProps = Omit<IProps, keyof IStateProps | keyof IDispatchProps>
 
@@ -13,7 +13,8 @@ const mapStateToProps = (state: any): IStateProps => {
 	return {
 		params: {},
 		hasData: getHasData(state),
-		popularMovies: getPopularMovies(state)
+		popularMovies: getPopularMovies(state),
+		popularTvSeries: getPopularTvSeries(state),
 	};
 };
 

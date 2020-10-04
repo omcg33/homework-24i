@@ -16,5 +16,10 @@ export const getHasData = createSelector(
 
 export const getPopularMovies = createSelector(
 	(state: IState) => getData(state)?.popularMovies,
-	(popularMovies: any[]) => popularMovies
+	(popularMovies: any[] | undefined) => popularMovies
+);
+
+export const getPopularTvSeries = createSelector(
+	(state: IState) => getData(state)?.popularTvSeries,
+	(popularTvSeries: any[] | undefined) => popularTvSeries
 );

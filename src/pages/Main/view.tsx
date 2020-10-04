@@ -7,18 +7,20 @@ import {createImagePosterUrl} from "../../app/helpers";
 
 import {PageSpinner}      from "../../components/PageSpinner";
 import {MovieCard}        from "../../components/Card/Movie";
+import {TvSeriesCard}     from "../../components/Card/TvSeries";
 import {ResponsiveSlider} from "../../components/Slider/Responsive";
 
 import styles             from "./Main.module.scss";
 
 export type IProps = {
 	hasData: boolean;
-	popularMovies: any;
+	popularMovies?: any[];
+	popularTvSeries?: any[];
 };
 
 
 export const View = React.memo((props:IProps) => {
-	const { hasData, popularMovies } = props;
+	const { hasData, popularMovies, popularTvSeries } = props;
 
 	return (
 		<>
@@ -58,6 +60,35 @@ export const View = React.memo((props:IProps) => {
 									: null
 							}
 
+							{
+								!!popularTvSeries && popularTvSeries.length > 0
+									? (
+										<div className={styles.popularTvSeriesWrp}>
+											<h2 className={styles.popularTvSeriesTitle}>
+												Popular Tv Series
+											</h2>
+											<ResponsiveSlider
+												className={styles.popularTvSeriesSlider}
+												settings={{
+													equalSlidesHeight: true
+												}}
+											>
+												{
+													popularTvSeries.map(item => (
+														<TvSeriesCard
+															key={item.id}
+															to={`/tvseries/${item.id}`}
+															title={item.name}
+															imageUrl={createImagePosterUrl(item.poster_path)}
+															className={styles.popularTvSeries}
+														/>
+													))
+												}
+											</ResponsiveSlider>
+										</div>
+									)
+									: null
+							}
 
 						</Container>
 					)
