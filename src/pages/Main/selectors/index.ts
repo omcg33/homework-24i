@@ -23,3 +23,8 @@ export const getPopularTvSeries = createSelector(
 	(state: IState) => getData(state)?.popularTvSeries,
 	(popularTvSeries: any[] | undefined) => popularTvSeries
 );
+
+export const getFamilyMovies = createSelector(
+	(state: IState) => getData(state)?.familyMovies,
+	(familyMovies: any[] | undefined) => familyMovies
+);

@@ -3,9 +3,9 @@ import {connect} from "react-redux";
 import {run} from "../../app/actions";
 
 import {Controller, IProps}                               from "./controller";
-import {getHasData, getPopularMovies, getPopularTvSeries} from "./selectors";
+import {getHasData, getPopularMovies, getPopularTvSeries, getFamilyMovies} from "./selectors";
 
-type IStateProps = Pick<IProps, "params" | "hasData" | "popularMovies" | "popularTvSeries">;
+type IStateProps = Pick<IProps, "params" | "hasData" | "popularMovies" | "popularTvSeries" | "familyMovies">;
 type IDispatchProps = Pick<IProps, "run">;
 export type IOwnProps = Omit<IProps, keyof IStateProps | keyof IDispatchProps>
 
@@ -15,6 +15,7 @@ const mapStateToProps = (state: any): IStateProps => {
 		hasData: getHasData(state),
 		popularMovies: getPopularMovies(state),
 		popularTvSeries: getPopularTvSeries(state),
+		familyMovies: getFamilyMovies(state),
 	};
 };
 

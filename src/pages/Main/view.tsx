@@ -16,11 +16,12 @@ export type IProps = {
 	hasData: boolean;
 	popularMovies?: any[];
 	popularTvSeries?: any[];
+	familyMovies?: any[];
 };
 
 
 export const View = React.memo((props:IProps) => {
-	const { hasData, popularMovies, popularTvSeries } = props;
+	const { hasData, popularMovies, popularTvSeries, familyMovies } = props;
 
 	return (
 		<>
@@ -65,7 +66,7 @@ export const View = React.memo((props:IProps) => {
 									? (
 										<div className={styles.popularTvSeriesWrp}>
 											<h2 className={styles.popularTvSeriesTitle}>
-												Popular Tv Series
+												Popular Series
 											</h2>
 											<ResponsiveSlider
 												className={styles.popularTvSeriesSlider}
@@ -90,6 +91,35 @@ export const View = React.memo((props:IProps) => {
 									: null
 							}
 
+							{
+								!!familyMovies && familyMovies.length > 0
+									? (
+										<div className={styles.familyMoviesWrp}>
+											<h2 className={styles.familyMoviesTitle}>
+												Popular Series
+											</h2>
+											<ResponsiveSlider
+												className={styles.familyMovies}
+												settings={{
+													equalSlidesHeight: true
+												}}
+											>
+												{
+													familyMovies.map(movie => (
+														<MovieCard
+															key={movie.id}
+															to={`/movie/${movie.id}`}
+															title={movie.title}
+															imageUrl={createImagePosterUrl(movie.poster_path)}
+															className={styles.familyMovie}
+														/>
+													))
+												}
+											</ResponsiveSlider>
+										</div>
+									)
+									: null
+							}
 						</Container>
 					)
 					: <PageSpinner/>

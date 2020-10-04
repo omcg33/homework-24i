@@ -4,33 +4,28 @@
 	@include title("L");
 }
 
-.popularMoviesWrp {
+
+.popularMoviesWrp,
+.popularTvSeriesWrp,
+.familyMoviesWrp {
 	margin-top: 50px;
 }
 
-.popularMoviesTitle {
+.popularMoviesTitle,
+.popularTvSeriesTitle,
+.familyMoviesTitle {
 	@include title("S");
 }
-.popularMovies {
+
+.popularMovies,
+.popularTvSeriesSlider,
+.familyMovies {
 	margin-left: -5px;
 	margin-right: -5px;
 }
-.popularMovie {
-	padding: 15px 5px 0 5px;
-}
 
-
-.popularTvSeriesWrp {
-	margin-top: 50px;
-}
-
-.popularTvSeriesTitle {
-	@include title("S");
-}
-.popularTvSeriesSlider {
-	margin-left: -5px;
-	margin-right: -5px;
-}
-.popularTvSeries {
+.popularMovie,
+.popularTvSeries,
+.familyMovie {
 	padding: 15px 5px 0 5px;
 }
