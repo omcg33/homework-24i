@@ -3,3 +3,17 @@
 .appName {
 	@include title("L");
 }
+
+.popularMoviesWrp {
+	margin-top: 50px;
+}
+.popularMoviesTitle {
+	@include title("S");
+}
+.popularMovies {
+	margin-left: -5px;
+	margin-right: -5px;
+}
+.popularMovie {
+	padding: 15px 5px 0 5px;
+}

@@ -5,3 +5,9 @@ body {
 	color: $palette-text-default-normal-text;
 	font-family: Arial,Helvetica,Helvetica Neue,sans-serif;
 }
+
+a{
+	&:hover {
+		text-decoration: none;
+	}
+}

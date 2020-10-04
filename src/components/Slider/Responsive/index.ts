@@ -1,0 +1,1 @@
+export { ResponsiveSlider } from './view';

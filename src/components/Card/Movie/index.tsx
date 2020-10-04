@@ -16,8 +16,10 @@ export const MovieCard = React.memo((props:IProps) => {
 			className={cn(styles.movieCard, className)}
 			{...rest}
 		>
+			<div className={styles.imageWrp}>
+				<img className={styles.image} src={imageUrl} alt={title}/>
+			</div>
 			<span className={styles.title}>{ title }</span>
-			<img src={imageUrl} alt={title}/>
 		</Link>
 	)
 })
