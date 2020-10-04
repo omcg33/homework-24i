@@ -3,7 +3,7 @@ import {Switch, Route}    from "react-router-dom";
 
 import {MainPage} from "../pages/Main";
 
-require("./styles.scss");
+require("./styles/global.scss");
 
 export class App extends Component {
 	render() {

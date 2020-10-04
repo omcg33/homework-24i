@@ -1,2 +1,6 @@
 export const ADD        = 'PAGES/MAIN/ADD';
-export const LOADED     = 'PAGES/MAIN/LOADED';
+
+export const add = (data: Record<string, any>) => ({
+	type: ADD,
+	payload: data
+});

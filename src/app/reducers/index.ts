@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 
-import { mainPageReducer } from "../../pages/Main/reducers";
+import { mainPageReducer, PAGE_KEY as MAIN_PAGE_KEY } from "../../pages/Main/reducers";
 
 export const rootReducer = combineReducers({
-	mainPage: mainPageReducer
+	[MAIN_PAGE_KEY]: mainPageReducer
 })

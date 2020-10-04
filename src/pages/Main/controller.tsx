@@ -11,10 +11,9 @@ export type IProps = {
 } & IViewProps;
 
 export const Controller = React.memo((props: IProps) => {
-	const {run, params, hasData} = props;
+	const {run, params, ...rest} = props;
 
 	useEffect(() => {
-		console.log(initSaga);
 		run({
 			saga: initSaga,
 			params
@@ -23,7 +22,7 @@ export const Controller = React.memo((props: IProps) => {
 
 	return (
 		<View
-			hasData={hasData}
+			{...rest}
 		/>
 	);
 })

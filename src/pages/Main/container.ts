@@ -1,17 +1,19 @@
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
-import { run } from "../../app/actions";
+import {run} from "../../app/actions";
 
-import { Controller, IProps } from "./controller";
+import {Controller, IProps}           from "./controller";
+import {getHasData, getPopularMovies} from "./selectors";
 
-type IStateProps = Pick<IProps, "params" | "hasData">;
+type IStateProps = Pick<IProps, "params" | "hasData" | "popularMovies">;
 type IDispatchProps = Pick<IProps, "run">;
 export type IOwnProps = Omit<IProps, keyof IStateProps | keyof IDispatchProps>
 
 const mapStateToProps = (state: any): IStateProps => {
 	return {
 		params: {},
-		hasData: false
+		hasData: getHasData(state),
+		popularMovies: getPopularMovies(state)
 	};
 };
 

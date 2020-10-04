@@ -1,0 +1,14 @@
+@import "../../../app/styles/typography.scss";
+
+.movieCard {
+	display: block;
+}
+
+.title {
+	@include text();
+	font-weight: bold;
+
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+}

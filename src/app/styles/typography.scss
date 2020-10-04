@@ -1,0 +1,39 @@
+@mixin title($size: "M") {
+	font-weight: 900;
+	font-style: normal;
+
+	@if $size == "L" {
+		font-size: 40px;
+		line-height: 44px;
+	}
+
+	@if $size == "M" {
+		font-size: 30px;
+		line-height: 34px;
+	}
+
+	@if $size == "S" {
+		font-size: 25px;
+		line-height: 30px;
+	}
+}
+
+@mixin text($size: "M") {
+	font-weight: 400;
+	font-style: normal;
+
+	@if $size == "L" {
+		font-size: 20px;
+		line-height: 35px;
+	}
+
+	@if $size == "M" {
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	@if $size == "S" {
+		font-size: 12px;
+		line-height: 14px;
+	}
+}
