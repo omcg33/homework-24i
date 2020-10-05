@@ -7,18 +7,26 @@ import {initSaga}                   from "./sagas";
 
 export type IProps = {
 	run: (meta: IRunActionMeta) => void;
+	unmount: () => void;
 	params: { id: number };
 } & IViewProps;
 
 export const Controller = React.memo((props: IProps) => {
-	const {run, params, ...rest} = props;
+	const {run, unmount, params, ...rest} = props;
 
 	useEffect(() => {
-		run({
-			saga: initSaga,
-			params
-		})
-	}, [run, params]);
+			run({
+				saga: initSaga,
+				params
+			})
+
+			return () => {
+				unmount();
+			}
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[]
+	);
 
 	return (
 		<View

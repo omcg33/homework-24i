@@ -1,4 +1,4 @@
-import { ADD } from "../actions";
+import {ADD, UNMOUNT} from "../actions";
 
 const initialState = {};
 
@@ -10,6 +10,8 @@ export const mainPageReducer = (state = initialState, action) => {
 	switch (type) {
 		case ADD:
 			return payload;
+		case UNMOUNT:
+			return initialState;
 		default:
 			return state;
 	}
