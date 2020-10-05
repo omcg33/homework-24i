@@ -41,4 +41,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 * 03.10.2020 - Made base skeleton - 2 hours
 * 04.10.2020 - Show first movie card - 2 hours
+* 04.10.2020 - Show sliders - 2 hours
 
