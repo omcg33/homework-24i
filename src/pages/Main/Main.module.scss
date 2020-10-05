@@ -3,29 +3,36 @@
 .appName {
 	@include title("L");
 }
-
+.header,
+.footer {
+	height: 50px;
+}
 
 .popularMoviesWrp,
 .popularTvSeriesWrp,
-.familyMoviesWrp {
+.familyMoviesWrp,
+.documentaryMoviesWrp {
 	margin-top: 50px;
 }
 
 .popularMoviesTitle,
 .popularTvSeriesTitle,
-.familyMoviesTitle {
+.familyMoviesTitle,
+.documentaryMoviesTitle {
 	@include title("S");
 }
 
 .popularMovies,
 .popularTvSeriesSlider,
-.familyMovies {
+.familyMovies,
+.documentaryMovies {
 	margin-left: -5px;
 	margin-right: -5px;
 }
 
 .popularMovie,
 .popularTvSeries,
-.familyMovie {
+.familyMovie,
+.documentaryMovie {
 	padding: 15px 5px 0 5px;
 }

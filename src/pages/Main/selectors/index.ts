@@ -28,3 +28,9 @@ export const getFamilyMovies = createSelector(
 	(state: IState) => getData(state)?.familyMovies,
 	(familyMovies: any[] | undefined) => familyMovies
 );
+
+export const getDocumentaryMovies = createSelector(
+	(state: IState) => getData(state)?.documentaryMovies,
+	(documentaryMovies: any[] | undefined) => documentaryMovies
+);
+
