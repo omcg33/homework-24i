@@ -13,6 +13,12 @@ export type IGetMovieDiscoverParams = {
 	with_genres?: string;
 };
 
+export type IGetMovieDetailsParams = {
+	id: number;
+
+	language?: string;
+}
+
 const decorateByAuth = (params: Record<string, any>) => ({...params, api_key: TMDB_API_KEY});
 
 export const tmdb = {
@@ -25,4 +31,10 @@ export const tmdb = {
 	getMovieDiscover: (params:IGetMovieDiscoverParams) => {
 		return axios.get(`${TMDB_API_BASE_PATH}/discover/movie`, { params: decorateByAuth(params) }).then(result => result.data)
 	},
+
+	getMovieDetails: (params: IGetMovieDetailsParams) => {
+		const { id, ...rest } = params;
+
+		return axios.get(`${TMDB_API_BASE_PATH}/movie/${id}`, { params: decorateByAuth(rest) }).then(result => result.data)
+	}
 }
