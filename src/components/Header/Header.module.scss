@@ -1,0 +1,25 @@
+@import "../../app/styles/pallette";
+
+.header {
+	background-color: $palette-passive-default-hover-bg;
+	border-bottom: 1px solid $palette-passive-default-normal-border;
+	box-shadow: 0 4px 12px rgba(17,13,43,.2);
+}
+
+.menuItem {
+	display: inline-block;
+	padding: 20px 0;
+	color: $palette-text-interactive-normal-text;
+
+	&:hover {
+		color: $palette-text-interactive-hover-text;
+	}
+}
+
+.menuItemActive {
+	cursor: default;
+	color: $palette-text-interactive-active-text;
+	&:hover {
+		color: $palette-text-interactive-active-text;
+	}
+}

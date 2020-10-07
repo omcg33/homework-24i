@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 
 import {createImagePosterUrl} from "../../app/helpers";
 
+import {Header}           from "../../components/Header";
 import {PageSpinner}      from "../../components/PageSpinner";
 import {MovieCard}        from "../../components/Card/Movie";
 import {TvSeriesCard}     from "../../components/Card/TvSeries";
@@ -26,8 +27,8 @@ export const View = React.memo((props:IProps) => {
 			hasData
 				? (
 					<>
-						<div className={styles.header}/>
-						<Container>
+						<Header className={styles.header}/>
+						<Container className={styles.container}>
 							<h1 className={styles.appName}>Homework for 24i</h1>
 
 							{

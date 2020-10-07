@@ -5,8 +5,9 @@ import Container from "react-bootstrap/Container";
 import Button    from "react-bootstrap/Button";
 
 
-import { ShakaPlayer} from "../../components/Player";
-import {PageSpinner}  from "../../components/PageSpinner";
+import {Header}      from "../../components/Header";
+import {ShakaPlayer} from "../../components/Player";
+import {PageSpinner} from "../../components/PageSpinner";
 
 import styles                 from "./TvShow.module.scss";
 import {createImagePosterUrl} from "../../app/helpers";
@@ -37,8 +38,8 @@ export const View = React.memo((props:IProps) => {
 		hasData
 			? (
 				<>
-					<div className={styles.header}/>
-					<Container>
+					<Header className={styles.header}/>
+					<Container className={styles.container}>
 						<Row>
 							<Col xs={12} md={6}>
 								<h1 className={styles.title}>

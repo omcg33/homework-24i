@@ -1,7 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 @import "../../app/styles/typography.scss";
 
-.header,
+
+.container {
+	padding-top: 50px;
+}
+
 .footer {
 	height: 50px;
 }

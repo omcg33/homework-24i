@@ -3,7 +3,11 @@
 .appName {
 	@include title("L");
 }
-.header,
+
+.container {
+	padding-top: 50px;
+}
+
 .footer {
 	height: 50px;
 }
