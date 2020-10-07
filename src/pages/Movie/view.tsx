@@ -2,26 +2,33 @@ import React     from "react";
 import Row       from "react-bootstrap/Row";
 import Col       from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Button    from "react-bootstrap/Button";
 
-import {PageSpinner} from "../../components/PageSpinner";
 
-import styles from "./Movie.module.scss";
+import { ShakaPlayer} from "../../components/Player";
+import {PageSpinner}  from "../../components/PageSpinner";
+
+import styles                 from "./Movie.module.scss";
+import {createImagePosterUrl} from "../../app/helpers";
 
 
 export type IProps = {
 	hasData: boolean;
 	movie: any;
+
+	isPlayerOpened: boolean;
+	onWatchButtonClick: () => void;
+	onPlayerCloseButtonClick: () => void;
 };
 
 export const View = React.memo((props:IProps) => {
-	const { hasData, movie } = props;
+	const { hasData, movie, onWatchButtonClick, onPlayerCloseButtonClick, isPlayerOpened } = props;
 	const title = movie?.title;
 	const description = movie?.overview;
 	const genres = movie?.genres;
 	const voteAverage = movie?.vote_average;
 	const releaseDate = movie?.release_date;
 	const formatedReleaseData = releaseDate ? new Intl.DateTimeFormat().format(new Date(releaseDate)) : undefined
-	console.log(movie);
 
 	return (
 		hasData
@@ -61,13 +68,37 @@ export const View = React.memo((props:IProps) => {
 											: null
 									}
 								</div>
+
+								<Button
+									block
+									size="lg"
+									className={styles.playButton}
+									onClick={onWatchButtonClick}
+								>
+									Watch
+								</Button>
 							</Col>
 							<Col xs md={6}>
-								<div style={{height: "500px", background: "red"}}/>
+								<div className={styles.posterWrp} onClick={onWatchButtonClick}>
+									<img src={createImagePosterUrl(movie.poster_path, "w500")} alt={title}/>
+								</div>
 							</Col>
 						</Row>
 
 					</Container>
+					{
+						isPlayerOpened
+							? (
+								<ShakaPlayer
+									title={title}
+									src={"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"}
+									autoPlay
+									onClose={onPlayerCloseButtonClick}
+								/>
+							)
+							: null
+					}
+
 					<div className={styles.footer}/>
 				</>
 			)

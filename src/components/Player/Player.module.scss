@@ -1,0 +1,28 @@
+@import "../../app/styles/typography.scss";
+
+.videoWrp {
+	position: relative;
+	display: inline-block;
+}
+
+.video {
+	position: relative;
+	z-index: 0;
+}
+
+.videoTitle {
+	position: absolute;
+	top: 10%;
+	left: 5%;
+	@include title("L");
+	z-index: 5;
+}
+
+.close {
+	position: absolute;
+	top: 10%;
+	right: 5%;
+	@include title("L");
+	z-index: 5;
+	cursor: pointer;
+}

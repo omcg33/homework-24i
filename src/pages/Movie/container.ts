@@ -24,7 +24,7 @@ const mapStateToProps = (state: any, props: IOwnProps): IStateProps => {
 
 const mapDispatchToProps: IDispatchProps = {
 	run,
-	unmount
+	unmount,
 };
 
 

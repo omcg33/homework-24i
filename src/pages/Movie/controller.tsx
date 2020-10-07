@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useCallback, useState} from "react";
 
 import {IRunActionMeta} from "../../app/actions";
 
@@ -13,6 +13,7 @@ export type IProps = {
 
 export const Controller = React.memo((props: IProps) => {
 	const {run, unmount, params, ...rest} = props;
+	const [ isPlayerOpened, setIsPlayerOpened ] = useState(false);
 
 	useEffect(() => {
 			run({
@@ -28,9 +29,20 @@ export const Controller = React.memo((props: IProps) => {
 		[]
 	);
 
+	const onWatchButtonClick = useCallback(() => {
+		setIsPlayerOpened(true);
+	}, [setIsPlayerOpened])
+
+	const onPlayerCloseButtonClick = useCallback(() => {
+		setIsPlayerOpened(false);
+	}, [setIsPlayerOpened]);
+
 	return (
 		<View
 			{...rest}
+			isPlayerOpened={isPlayerOpened}
+			onWatchButtonClick={onWatchButtonClick}
+			onPlayerCloseButtonClick={onPlayerCloseButtonClick}
 		/>
 	);
 })
