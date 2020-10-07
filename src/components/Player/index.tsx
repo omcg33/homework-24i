@@ -5,7 +5,8 @@ import "shaka-player/dist/controls.css";
 import shaka from "shaka-player/dist/shaka-player.ui.js"
 import styles from "./Player.module.scss";
 
-require ("./components/shaka/closeButton.js");
+import {CloseButtonFactory} from "./components/shaka/closeButton.js";
+import {TitleFactory}       from "./components/shaka/title";
 
 
 export type IProps = {
@@ -52,7 +53,7 @@ export class ShakaPlayer extends React.PureComponent<IProps, IState>{
 	}
 
 	componentDidMount(){
-		const { src, fullscreen = false } = this.props;
+		const { src, fullscreen = false, title, onClose } = this.props;
 		//Getting reference to video and video container on DOM
 		const video = this.videoComponent.current;
 		const videoContainer = this.videoContainer.current;
@@ -62,17 +63,18 @@ export class ShakaPlayer extends React.PureComponent<IProps, IState>{
 
 		//Setting UI configuration JSON object
 		const uiConfig = {
-			controlPanelElements: ['time_and_duration'],
+			controlPanelElements: ['time_and_duration', 'fullscreen', 'close', 'title'],
 		};
 
-		const closeFactory = new shaka.CloseButton.Factory();
-		shaka.ui.Controls.registerElement('close', closeFactory);
+		shaka.ui.Controls.registerElement('close', new CloseButtonFactory({onClick: onClose}));
+		if (!!title)
+			shaka.ui.Controls.registerElement('title', new TitleFactory({title}));
 
 		//Setting up shaka player UI
 		const ui = new shaka.ui.Overlay(player, videoContainer, video);
 
 		ui.configure(uiConfig); //configure UI
-		ui.getControls();
+		const controls = ui.getControls();
 
 		// Listen for error events.
 		player.addEventListener('error', this.onErrorEvent);
@@ -80,12 +82,12 @@ export class ShakaPlayer extends React.PureComponent<IProps, IState>{
 		// Try to load a manifest.
 		// This is an asynchronous process.
 		player.load(src)
-			.then(() => {
+			.then(async () => {
 				// This runs if the asynchronous load is successful.
-				console.log('The video has now been loaded!');
 				this.setState({loaded: true})
+
 				if (fullscreen)
-					video.requestFullscreen();
+					controls.toggleFullScreen()
 			})
 			.catch(this.onError);  // onError is executed if the asynchronous load fails.
 	}
@@ -108,12 +110,6 @@ export class ShakaPlayer extends React.PureComponent<IProps, IState>{
 					className={styles.video}
 					ref={this.videoComponent}
 				/>
-
-				{
-					title
-						? <span className={styles.videoTitle}>{title}</span>
-						: null
-				}
 			</div>
 		);
 	}
