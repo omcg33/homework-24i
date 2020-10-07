@@ -8,13 +8,13 @@ import Button    from "react-bootstrap/Button";
 import { ShakaPlayer} from "../../components/Player";
 import {PageSpinner}  from "../../components/PageSpinner";
 
-import styles                 from "./Movie.module.scss";
+import styles                 from "./TvShow.module.scss";
 import {createImagePosterUrl} from "../../app/helpers";
 
 
 export type IProps = {
 	hasData: boolean;
-	movie: any;
+	tvShow: any;
 
 	isPlayerOpened: boolean;
 	onWatchButtonClick: () => void;
@@ -22,14 +22,16 @@ export type IProps = {
 };
 
 export const View = React.memo((props:IProps) => {
-	const { hasData, movie, onWatchButtonClick, onPlayerCloseButtonClick, isPlayerOpened } = props;
-	const title = movie?.title;
-	const description = movie?.overview;
-	const genres = movie?.genres;
-	const posterPath = movie?.poster_path;
-	const voteAverage = movie?.vote_average;
-	const releaseDate = movie?.release_date;
-	const formatedReleaseData = releaseDate ? new Intl.DateTimeFormat().format(new Date(releaseDate)) : undefined
+	const { hasData, tvShow, onWatchButtonClick, onPlayerCloseButtonClick, isPlayerOpened } = props;
+	console.log(tvShow);
+
+	const title = tvShow?.name;
+	const description = tvShow?.overview;
+	const genres = tvShow?.genres;
+	const voteAverage = tvShow?.vote_average;
+	const firstAirDate = tvShow?.first_air_date;
+	const posterPath = tvShow?.poster_path;
+	const formatedFirstAirDate = firstAirDate ? new Intl.DateTimeFormat().format(new Date(firstAirDate)) : undefined
 
 	return (
 		hasData
@@ -38,7 +40,7 @@ export const View = React.memo((props:IProps) => {
 					<div className={styles.header}/>
 					<Container>
 						<Row>
-							<Col xs md={6}>
+							<Col xs={12} md={6}>
 								<h1 className={styles.title}>
 									{ title }
 								</h1>
@@ -59,8 +61,8 @@ export const View = React.memo((props:IProps) => {
 											: null
 									}
 									{
-										!!formatedReleaseData
-											? <div className={styles.metaItem}>Release Date: { formatedReleaseData }</div>
+										!!formatedFirstAirDate
+											? <div className={styles.metaItem}>First air date: { formatedFirstAirDate }</div>
 											: null
 									}
 									{
@@ -79,7 +81,7 @@ export const View = React.memo((props:IProps) => {
 									Watch
 								</Button>
 							</Col>
-							<Col xs md={6}>
+							<Col xs={12} md={6}>
 								<div className={styles.posterWrp} onClick={onWatchButtonClick}>
 									<img className={styles.poster} src={createImagePosterUrl(posterPath, "w500")} alt={title}/>
 								</div>

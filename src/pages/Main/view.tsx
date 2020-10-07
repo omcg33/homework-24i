@@ -77,7 +77,7 @@ export const View = React.memo((props:IProps) => {
 													popularTvSeries.map(item => (
 														<TvSeriesCard
 															key={item.id}
-															to={`/tvseries/${item.id}`}
+															to={`/tv/${item.id}`}
 															title={item.name}
 															imageUrl={createImagePosterUrl(item.poster_path)}
 															className={styles.popularTvSeries}
