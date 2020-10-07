@@ -18,13 +18,16 @@ export type IGetMovieDetailsParams = {
 
 	language?: string;
 }
-
 export type IGetTvShowDetailsParams = {
 	id: number;
 
 	language?: string;
 }
+export type IGetSearchMultiParams = {
+	query: string;
 
+	language?: string;
+}
 const decorateByAuth = (params: Record<string, any>) => ({...params, api_key: TMDB_API_KEY});
 
 export const tmdb = {
@@ -47,5 +50,9 @@ export const tmdb = {
 		const { id, ...rest } = params;
 
 		return axios.get(`${TMDB_API_BASE_PATH}/tv/${id}`, { params: decorateByAuth(rest) }).then(result => result.data)
+	},
+
+	getSearchMulti: (params: IGetSearchMultiParams) => {
+		return axios.get(`${TMDB_API_BASE_PATH}/search/multi`, { params: decorateByAuth(params) }).then(result => result.data)
 	}
 }
