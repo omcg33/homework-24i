@@ -43,3 +43,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 * 04.10.2020 - Show first movie card - 2 hours
 * 04.10.2020 - Show sliders - 2 hours
 * 05.10.2020 - Movie page and clear store on unmount - 1 hour
+* 07.10.2020 - Base shaka player view - 2 hours
