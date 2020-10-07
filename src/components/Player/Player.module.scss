@@ -3,6 +3,14 @@
 .videoWrp {
 	position: relative;
 	display: inline-block;
+
+	&.fullscreen {
+		display: none;
+
+		&.loaded {
+			display: block;
+		}
+	}
 }
 
 .video {
@@ -25,4 +33,12 @@
 	@include title("L");
 	z-index: 5;
 	cursor: pointer;
+}
+
+:global {
+	.shaka-close-button {
+		position: absolute;
+		top: 10%;
+		right: 5%;
+	}
 }

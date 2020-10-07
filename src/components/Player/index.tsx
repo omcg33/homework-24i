@@ -1,21 +1,28 @@
-import React  from "react";
-import cn     from "classnames";
+import React from "react";
+import cn    from "classnames";
 
 import "shaka-player/dist/controls.css";
+import shaka from "shaka-player/dist/shaka-player.ui.js"
 import styles from "./Player.module.scss";
 
-const shaka = require('shaka-player/dist/shaka-player.ui.js');
+require ("./components/shaka/closeButton.js");
 
 
 export type IProps = {
 	src: string;
 
 	autoPlay?: boolean;
+	fullscreen?: boolean;
+
 	title?: string;
 	onClose?: () => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export class ShakaPlayer extends React.PureComponent<IProps>{
+type IState = {
+	loaded: boolean;
+}
+
+export class ShakaPlayer extends React.PureComponent<IProps, IState>{
 	private videoComponent;
 	private videoContainer;
 
@@ -29,23 +36,23 @@ export class ShakaPlayer extends React.PureComponent<IProps>{
 		//Creating reference to store video container on DOM
 		this.videoContainer = React.createRef();
 
-		//Initializing reference to error handlers
-		this.onErrorEvent = this.onErrorEvent.bind(this);
-		this.onError = this.onError.bind(this);
+		this.state = {
+			loaded: false
+		}
 	}
 
-	onErrorEvent(event) {
+	private onErrorEvent(event) {
 		// Extract the shaka.util.Error object from the event.
 		this.onError(event.detail);
 	}
 
-	onError(error) {
+	private onError(error) {
 		// Log the error.
 		console.error('Error code', error.code, 'object', error);
 	}
 
 	componentDidMount(){
-		const { src } = this.props;
+		const { src, fullscreen = false } = this.props;
 		//Getting reference to video and video container on DOM
 		const video = this.videoComponent.current;
 		const videoContainer = this.videoContainer.current;
@@ -57,6 +64,9 @@ export class ShakaPlayer extends React.PureComponent<IProps>{
 		const uiConfig = {
 			controlPanelElements: ['time_and_duration'],
 		};
+
+		const closeFactory = new shaka.CloseButton.Factory();
+		shaka.ui.Controls.registerElement('close', closeFactory);
 
 		//Setting up shaka player UI
 		const ui = new shaka.ui.Overlay(player, videoContainer, video);
@@ -73,18 +83,26 @@ export class ShakaPlayer extends React.PureComponent<IProps>{
 			.then(() => {
 				// This runs if the asynchronous load is successful.
 				console.log('The video has now been loaded!');
+				this.setState({loaded: true})
+				if (fullscreen)
+					video.requestFullscreen();
 			})
 			.catch(this.onError);  // onError is executed if the asynchronous load fails.
-
-
-
 	}
 
 	render(){
-		const { title, autoPlay, onClose, className = "", ...rest } = this.props;
+		const { title, autoPlay, onClose, className = "", fullscreen, ...rest } = this.props;
+		const { loaded } = this.state;
 
 		return(
-			<div className={cn(styles.videoWrp, className)} ref={this.videoContainer} { ...rest}>
+			<div
+				className={cn(styles.videoWrp, className, {
+					[styles.fullscreen]: fullscreen,
+					[styles.loaded]: loaded
+				})}
+				ref={this.videoContainer}
+				{ ...rest}
+			>
 				<video
 					autoPlay={autoPlay}
 					className={styles.video}
@@ -94,11 +112,6 @@ export class ShakaPlayer extends React.PureComponent<IProps>{
 				{
 					title
 						? <span className={styles.videoTitle}>{title}</span>
-						: null
-				}
-				{
-					typeof onClose === "function"
-						? <div className={styles.close} onClick={onClose}>X</div>
 						: null
 				}
 			</div>

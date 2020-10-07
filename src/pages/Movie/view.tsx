@@ -90,9 +90,10 @@ export const View = React.memo((props:IProps) => {
 						isPlayerOpened
 							? (
 								<ShakaPlayer
+									fullscreen
+									autoPlay
 									title={title}
 									src={"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"}
-									autoPlay
 									onClose={onPlayerCloseButtonClick}
 								/>
 							)
