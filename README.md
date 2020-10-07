@@ -44,3 +44,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 * 04.10.2020 - Show sliders - 2 hours
 * 05.10.2020 - Movie page and clear store on unmount - 1 hour
 * 07.10.2020 - Base shaka player view - 2 hours
+* 07.10.2020 - Fullscreen and title in player - 2 hours
+* 07.10.2020 - TV Show details page - 10 minutes
