@@ -4,7 +4,7 @@ import {CHANGE, searchFormReducer} from "../../../components/SearchForm";
 
 const initialState = {
 	searchForm: {},
-	results: []
+	results: null
 };
 
 export const PAGE_KEY = "searchPage";
