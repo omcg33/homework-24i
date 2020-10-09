@@ -46,5 +46,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 * 07.10.2020 - Base shaka player view - 2 hours
 * 07.10.2020 - Fullscreen and title in player - 2 hours
 * 07.10.2020 - TV Show details page - 10 minutes
-* 07.10.2020 - Serch request and Search Form - 1 hour
+* 07.10.2020 - Search request and Search Form - 1 hour
 * 08.10.2020 - Different render for search results type - 30 minutes
+* 09.10.2020 - Error Handling - 1 hour
+
