@@ -4,9 +4,11 @@ import {createStore, compose, applyMiddleware} from "redux";
 import {Provider}                              from "react-redux";
 import {composeWithDevTools}                   from "redux-devtools-extension";
 import createSagaMiddleware                    from "redux-saga";
-import {BrowserRouter}                         from "react-router-dom";
+import {Router}                         from "react-router-dom";
 
-import {App}              from "./app";
+import history from './helpers/history'
+
+import App              from "./app";
 import {rootSaga}         from "./app/sagas";
 import {rootReducer}      from "./app/reducers";
 import * as serviceWorker from "./serviceWorker";
@@ -20,9 +22,9 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<BrowserRouter>
+			<Router history={history}>
 				<App/>
-			</BrowserRouter>
+			</Router>
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById("root")

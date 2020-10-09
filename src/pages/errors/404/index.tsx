@@ -1,18 +1,17 @@
 import React, {useCallback} from "react";
-import { useHistory } from 'react-router-dom';
 import Container            from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
+import Button               from "react-bootstrap/Button";
 
-import {Header}  from "../../../components/Header";
+import history  from "../../../helpers/history";
+import {Header} from "../../../components/Header";
 
-import styles    from "./Page404.module.scss";
+import styles from "./Page404.module.scss";
 
 
-export const Page404 = React.memo(() => {
-	const history = useHistory();
+export const Page404 = () => {
 	const onReturnClick = useCallback(() => {
 		history.go(-1);
-	},[]);
+	}, []);
 
 	return (
 		<>
@@ -25,4 +24,4 @@ export const Page404 = React.memo(() => {
 			</Container>
 		</>
 	)
-})
+};

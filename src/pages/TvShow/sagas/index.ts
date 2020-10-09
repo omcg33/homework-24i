@@ -1,6 +1,7 @@
 import {all, call, select, put} from "redux-saga/effects";
 
 import {tmdb}       from "../../../helpers/api";
+import history      from "../../../helpers/history";
 
 import {add}        from "../actions";
 import {getHasData} from "../selectors";
@@ -31,6 +32,18 @@ export function* getPageData(params: IGetPageDataParams) {
 			}));
 		} catch (e) {
 			console.error(e);
+
+			const errorStatusCode = e.response?.status || 500;
+
+			if (!!errorStatusCode && errorStatusCode > 400)
+				yield call(() => {
+						const location = history.location;
+						history.replace(location.pathname, {
+							...location.state,
+							errorStatusCode
+						});
+					}
+				);
 		}
 	}
 }
