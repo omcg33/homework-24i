@@ -5,6 +5,8 @@ import {moviePageReducer, PAGE_KEY as MOVIE_PAGE_KEY} from "../../pages/Movie/re
 import {tvSeriesPageReducer, PAGE_KEY as TVSHOW_PAGE_KEY} from "../../pages/TvShow/reducers";
 import {searchPageReducer, PAGE_KEY as SEARCH_PAGE_KEY} from "../../pages/Search/reducers";
 
+// Static reducer for application
+// Can be replaced by static reducer for common data and dynamic reducers for pages
 export const rootReducer = combineReducers({
 	[MAIN_PAGE_KEY]: mainPageReducer,
 	[SEARCH_PAGE_KEY]: searchPageReducer,

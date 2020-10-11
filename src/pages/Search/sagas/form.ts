@@ -14,7 +14,7 @@ export function* searchFormListener() {
 		if (typeof search === "undefined")
 			return;
 
-		try{
+		try {
 			const data = yield call(tmdb.getSearchMulti, { query: search});
 
 			if (data && Array.isArray(data.results))

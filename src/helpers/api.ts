@@ -28,8 +28,10 @@ export type IGetSearchMultiParams = {
 
 	language?: string;
 }
+
 const decorateByAuth = (params: Record<string, any>) => ({...params, api_key: TMDB_API_KEY});
 
+// Wrapper over tmdb api for simple use
 export const tmdb = {
 	getPopularMovies: (params:IGetPopularMoviesParams) => {
 		return axios.get(`${TMDB_API_BASE_PATH}/movie/popular`, { params: decorateByAuth(params) }).then(result => result.data)

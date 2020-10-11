@@ -66,7 +66,9 @@ export class ShakaPlayer extends React.PureComponent<IProps, IState>{
 			controlPanelElements: ['time_and_duration', 'fullscreen', 'close', 'title'],
 		};
 
+		// Custom close button
 		shaka.ui.Controls.registerElement('close', new CloseButtonFactory({onClick: onClose}));
+		// Custom movie title
 		if (!!title)
 			shaka.ui.Controls.registerElement('title', new TitleFactory({title}));
 
@@ -84,6 +86,7 @@ export class ShakaPlayer extends React.PureComponent<IProps, IState>{
 		player.load(src)
 			.then(async () => {
 				// This runs if the asynchronous load is successful.
+				// Show player only after video load
 				this.setState({loaded: true})
 
 				if (fullscreen)
@@ -100,6 +103,7 @@ export class ShakaPlayer extends React.PureComponent<IProps, IState>{
 			<div
 				className={cn(styles.videoWrp, className, {
 					[styles.fullscreen]: fullscreen,
+					//wait for loadidng video and after that show player
 					[styles.loaded]: loaded
 				})}
 				ref={this.videoContainer}

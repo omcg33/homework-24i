@@ -10,6 +10,7 @@ export function* initSaga() {
 	listeners.push(yield fork(searchFormListener));
 
 	yield take(UNMOUNT);
+	// destryoy all active listeners on page unmount
 	listeners.forEach(listener => listener.cancel());
 }
 

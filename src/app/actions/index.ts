@@ -12,6 +12,7 @@ export interface IRunAction {
 	meta: IRunActionMeta;
 }
 
+// Used for run page saga on SPA click
 export const run = (meta: IRunActionMeta): IRunAction => ({
 	type: RUN,
 	meta

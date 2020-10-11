@@ -15,6 +15,7 @@ export const Controller = React.memo((props: IProps) => {
 	const {run, unmount, params, ...rest} = props;
 
 	useEffect(() => {
+		//Start main page saga for load page data
 		run({
 			saga: initSaga,
 			params

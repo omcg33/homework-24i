@@ -4,9 +4,7 @@ import {ISubmitData}                from "./interfaces";
 import {View, IProps as IViewProps} from "./view";
 
 
-export type IProps =
-	{}
-	& Overwrite<IViewProps, { onSubmit?: (data: ISubmitData) => void, onChange?: (search?: string) => void }>;
+export type IProps = Overwrite<IViewProps, { onSubmit?: (data: ISubmitData) => void, onChange?: (search?: string) => void }>;
 
 export const Controller = React.memo((props: IProps) => {
 	const {onSubmit, onChange, search} = props;

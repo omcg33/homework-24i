@@ -4,11 +4,11 @@ import {createStore, compose, applyMiddleware} from "redux";
 import {Provider}                              from "react-redux";
 import {composeWithDevTools}                   from "redux-devtools-extension";
 import createSagaMiddleware                    from "redux-saga";
-import {Router}                         from "react-router-dom";
+import {Router}                                from "react-router-dom";
 
 import history from './helpers/history'
 
-import App              from "./app";
+import App                from "./app";
 import {rootSaga}         from "./app/sagas";
 import {rootReducer}      from "./app/reducers";
 import * as serviceWorker from "./serviceWorker";
@@ -19,6 +19,8 @@ const store = createStore(rootReducer, compose(applyMiddleware(sagaMiddleware), 
 
 sagaMiddleware.run(rootSaga);
 
+//Start point of application
+// Use for web render
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
